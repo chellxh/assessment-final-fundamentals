@@ -78,8 +78,8 @@ function getAverageIMDBRating(movies) {
 
   for (let movie of movies) {
     averageRating += Number(movie.imdbRating);
-    console.log(averageRating);
   }
+
   if (movies.length) {
     averageRating = averageRating / movies.length;
   }
@@ -191,7 +191,20 @@ function filterByGenre(movies, genreGiven) {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  let moviesReleased = [];
+
+  for (let movie of movies) {
+    let { released } = movie;
+    let releasedYear = released.split(" ");
+    releasedYear = releasedYear[releasedYear.length - 1];
+
+    if (releasedYear <= year) {
+      moviesReleased.push(movie);
+    }
+  }
+  return moviesReleased;
+}
 
 /**
  * getBiggestBoxOfficeMovie()
