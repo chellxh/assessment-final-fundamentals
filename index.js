@@ -31,7 +31,7 @@ const exampleMovies = require("./movies");
 function getAllMovieTitles(movies) {
   let movieTitles = [];
 
-  for (let movie in movies) {
+  for (let movie of movies) {
     movieTitles.push(movie.title);
   }
 
@@ -54,6 +54,7 @@ function getHighestMetascore(movies) {
 
   for (let movie of movies) {
     let score = Number(movie.metascore);
+
     if (score > highestMS) {
       highestMS = score;
     }
@@ -72,7 +73,18 @@ function getHighestMetascore(movies) {
  *  getAverageIMDBRating(movies);
  *  //> 7.76
  */
-function getAverageIMDBRating() {}
+function getAverageIMDBRating(movies) {
+  let averageRating = 0;
+
+  for (let movie of movies) {
+    averageRating += Number(movie.imdbRating);
+    console.log(averageRating);
+  }
+  if (movies.length) {
+    averageRating = averageRating / movies.length;
+  }
+  return averageRating;
+}
 
 /**
  * countByRating()
