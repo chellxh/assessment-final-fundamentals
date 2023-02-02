@@ -54,7 +54,6 @@ function getHighestMetascore(movies) {
 
   for (let movie of movies) {
     let score = Number(movie.metascore);
-
     if (score > highestMS) {
       highestMS = score;
     }
