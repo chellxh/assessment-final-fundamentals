@@ -98,18 +98,18 @@ function getAverageIMDBRating(movies) {
  *  //> { G: 3, PG: 7 }
  */
 function countByRating(movies) {
-  let result = {};
+  let ratings = {};
 
   for (let movie of movies) {
     let { rated } = movie;
 
-    if (result[rated]) {
-      result[rated]++;
+    if (ratings[rated]) {
+      ratings[rated]++;
     } else {
-      result[rated] = 1;
+      ratings[rated] = 1;
     }
   }
-  return result;
+  return ratings;
 }
 
 /**
@@ -126,7 +126,14 @@ function countByRating(movies) {
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  for (let movie of movies) {
+    if (movie.imdbID === id) {
+      return movie;
+    }
+  }
+  return null;
+}
 
 /**
  * filterByGenre()
@@ -148,7 +155,19 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genreGiven) {
+  let genreFilter = [];
+
+  for (let movie of movies) {
+    let genres = movie.genre.toLowerCase();
+    let genre = genreGiven.toLowerCase();
+
+    if (genres.includes(genre)) {
+      genreFilter.push(movie);
+    }
+  }
+  return genreFilter;
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
